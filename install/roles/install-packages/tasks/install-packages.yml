@@ -1,0 +1,31 @@
+- name: Install Docker
+  ansible.builtin.shell:
+    cmd: curl -fsSL https://get.docker.com | bash
+  notify: restart_docker
+
+- name: Install a list of packages
+  ansible.builtin.apt:
+    pkg:
+    - ansible
+    - python-setuptools
+    - pip
+    - python3-pip
+    - npm 
+    - nodejs
+
+- name: Configure npm
+  ansible.builtin.shell:
+    cmd: npm install npm --global
+
+- name: Install python packages
+  ansible.builtin.pip:
+    name:
+      - docker-compose
+      - docker-py
+    executable: pip
+
+- name: Clone AWX repository
+  ansible.builtin.git:
+    repo: "https://github.com/ansible/awx.git"
+    dest: /src/awx
+    clone: yes
