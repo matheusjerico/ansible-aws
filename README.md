@@ -19,6 +19,9 @@ sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(l
 sudo apt-get update && sudo apt-get install terraform
 ```
 
+## Terraform remote state
+To use terraform remote state, we need to create a s3 bucket before start next steps. To know more about it, read the [documentation](https://www.terraform.io/docs/language/settings/backends/s3.html).
+
 ## How to use
 All steps in this repository is controll by `Makefile`:
 - Create a plan with terraform:
